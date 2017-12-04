@@ -3,7 +3,7 @@
 
 class BST
 {
-public: 
+public:
 	~BST();
 	BST();
 	BaseNode * getpRoot(void);
@@ -14,8 +14,9 @@ public:
 	TransactionNode * findLargest(void);
 private:
 	BaseNode * mpRoot;
-	void DestroyTree(void);
+	void DestroyTree(BaseNode * pRoot);
 	void insert(BaseNode *& pT, TransactionNode *& newNode);
 	void inOrderTraversal(BaseNode * pRoot);
 
 };
+

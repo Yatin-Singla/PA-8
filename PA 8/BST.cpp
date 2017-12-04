@@ -2,7 +2,7 @@
 
 BST::~BST()
 {
-	DestroyTree();
+	DestroyTree(mpRoot);
 }
 
 BST::BST()
@@ -59,20 +59,64 @@ TransactionNode * BST::findLargest(void)
 	return pMem;
 }
 
-//yet to define
-void BST::DestroyTree(void)
-{
 
+void BST::DestroyTree(BaseNode * pRoot)
+{
+	if (pRoot != nullptr)
+	{
+		if (pRoot->getpLeft() != nullptr)
+		{
+			DestroyTree(pRoot->getpLeft());
+		}
+		else if (pRoot->getpLeft() == nullptr && pRoot->getpRight() != nullptr)
+		{
+			DestroyTree(pRoot->getpRight());
+		}
+
+		delete pRoot;
+	}
+	return;
 }
 
-//yet to define
 void BST::insert(BaseNode *& pT, TransactionNode *& newNode)
 {
-
+	if (newNode->getUnits() < (dynamic_cast<TransactionNode*>(pT)->getUnits()))
+	{
+		if (pT->getpLeft() == nullptr)
+		{
+			pT->setpLeft(newNode);
+		}
+		else
+		{
+			insert(pT->getpLeft(), newNode);
+		}
+	}
+	// if (NewNode->getEnglishChar() > pRoot->getEnglishChar())
+	else
+	{
+		if (pT->getpRight() == nullptr)
+		{
+			pT->setpRight(newNode);
+		}
+		else
+		{
+			insert(pT->getpRight(), newNode);
+		}
+	}
+	return;
 }
 
 //yet to define 
 void BST::inOrderTraversal(BaseNode * pRoot)
 {
-
+	if (pRoot->getpLeft() != nullptr)
+	{
+		inOrderTraversal(pRoot->getpLeft());
+	}
+	pRoot->printData();
+	if (pRoot->getpRight() != nullptr)
+	{
+		inOrderTraversal(pRoot->getpRight());
+	}
+	return;
 }

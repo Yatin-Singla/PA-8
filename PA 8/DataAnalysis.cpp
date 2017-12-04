@@ -6,7 +6,9 @@ DataAnalysis::DataAnalysis()
 }
 
 DataAnalysis::~DataAnalysis()
-{}
+{
+	mCSVstream.close();
+}
 
 void DataAnalysis::OpenFile(void)
 {
@@ -17,7 +19,7 @@ void DataAnalysis::OpenFile(void)
 }
 
 void DataAnalysis::runAnalysis(void)
-{ 
+{
 	Loop();
 }
 
@@ -40,9 +42,9 @@ void DataAnalysis::Loop(void)
 {
 	int Units = 0;
 	string  Type = "", TransactionField = "";
-	if (mCSVstream.is_open() == true)
+		if (mCSVstream.is_open() == true)
 	{
-		while (mCSVstream.eof() != true)
+			while (mCSVstream.eof() != true)
 		{
 			ReadSplit(&Units, Type, TransactionField);
 			CompareTF(Units, Type, TransactionField);
@@ -51,7 +53,7 @@ void DataAnalysis::Loop(void)
 	}
 }
 
-void DataAnalysis::CompareTF( int Units, string Type, string TransactionField)
+void DataAnalysis::CompareTF(int Units, string Type, string TransactionField)
 {
 	if (TransactionField == "Sold")
 	{

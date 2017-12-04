@@ -1,7 +1,7 @@
 #include "TransactionNode.h"
 
 //explicitly invoking BaseNode's constructor
-TransactionNode::TransactionNode(string newData, int newUnits):BaseNode(newData)
+TransactionNode::TransactionNode(string newData, int newUnits) :BaseNode(newData)
 {
 	mUnits = newUnits;
 }
